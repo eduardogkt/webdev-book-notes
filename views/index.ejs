@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("partials/head.ejs") %>
+
+<body>
+  <%- include("partials/header.ejs") %>
+  <main>
+    <div class="container">
+      <div class="col-auto todo-list">
+        <div id="row-auto title" class="todo-title">
+          <% if (locals.date) { %>
+          <%= date %>
+          <% } else {%>
+          <%= new Date() %>
+          <% } %>
+        </div>
+        <div class="row-auto todo-body">
+          <%- include("partials/form.ejs") %>
+
+          <div id="list">
+            <% if (locals.tasks) { %>
+            <% tasks.forEach((task) => { %>
+            <div class="task">
+              <input type="checkbox" id="<%= task.id %>" onchange="updateCheck(this)" />
+              <p id="text<%= task.id %>"><%= task.text %> </p>
+            </div>
+            <% }) %>
+            <% } %>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+  <%- include("partials/footer.ejs") %>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <script>
+    function updateCheck(checkbox) {
+      let text = document.getElementById("text" + checkbox.id);
+      if (checkbox.checked) {
+        text.classList.add("checked");
+      } else {
+        text.classList.remove("checked");
+      }
+    }
+  </script>
+</body>
+
+</html>
