@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include("partials/head.ejs") %>
+<%- include("partials/head.ejs", {title : "My bookshelf", style : ""}) %>
 
 <body>
   <%- include("partials/header.ejs") %>
@@ -35,7 +35,7 @@
           </a>
           <div class="book-data">
             <p>Read in: 12/03/2025</p>
-            <div>
+            <div class="stars">
               <i class="bi bi-star"></i>
               <i class="bi bi-star"></i>
               <i class="bi bi-star"></i>

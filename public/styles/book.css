@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap");
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+:root {
+    --text-main: hsl(0, 0%, 98%);
+    --text-2: hsl(0, 0%, 83%);
+    --text-3: hsl(0, 0%, 70%);
+    --text-4: hsl(0, 0%, 60%);
+    --border: hsl(0, 0%, 20%);
+    --bg: hsl(0, 0%, 8%);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+p {
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.this-book {
+    padding-top: 8rem;
+    display: flex;
+    gap: 2rem;
+}
+.this-book h1 {
+    margin: 1rem 0;
+    font-size: 1.5rem;
+    color: var(--text-main);
+}
+.this-book h2 {
+    font-size: 1rem;
+    color: var(--text-3);
+}
+
+.this-book-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 1rem;
+    width: 100%;
+}
+
+.this-book-stars {
+    font-size: 1.5rem;
+    color: var(--text-3);
+}
+.this-book-stars .bi-star-fill,
+.this-book-stars .bi-star-half {
+    color: goldenrod;
+}
+
+.this-book-data {
+    flex-direction: column;
+    gap: 0.8rem;
+}
+.this-book-data * {
+    font-size: 0.875rem;
+    color: var(--text-4);
+}
+
+.this-book-synopsis {
+}
+
+.content {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.note-title {
+    font-size: 1.5rem;
+    color: var(--text-2);
+    margin-bottom: 1rem;
+}
+
+.btn-opt,
+.btn-opt:hover {
+    background-color: var(--bg);
+    color: var(--text-2);
+    border: transparent;
+    margin: 0.5rem 0;
+    border-radius: 100px;
+}
+.btn-opt:hover {
+    background-color: hsl(0, 0%, 12%);
+}
+
+@media (max-width: 768px) {
+    .this-book {
+        flex-direction: column;
+        align-items: center;
+        padding-top: 12rem;
+        text-align: center;
+    }
+    .this-book-info {
+        align-items: center;
+    }
+    .this-book-info > div {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center !important;
+    }
+    .this-book-synopsis {
+        text-align: center;
+    }
+}
+@media (min-width: 769px) and (max-width: 992px) {
+    .this-book {
+        padding-top: 12rem;
+    }
+}
+@media (min-width: 993px) and (max-width: 1200px) {
+}
