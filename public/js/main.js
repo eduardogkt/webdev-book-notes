@@ -10,3 +10,7 @@ window.addEventListener("scroll", () => {
         headerLink.classList.remove("scrolled");
     }
 });
+
+function submitForm() {
+    document.getElementById("sort").submit();
+}
