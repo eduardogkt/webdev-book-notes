@@ -1,60 +1,28 @@
 import express from "express";
 import bodyParser from "body-parser";
+import pg from "pg";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 const port = 3000;
+const db = new pg.Client({
+    user: process.env.PG_USER,
+    password: process.env.PG_PASSWORD,
+    host: process.env.PG_HOST,
+    database: process.env.PG_DB,
+});
 
-let tasks = [];
-let lastId = 0;
-
-function getDayOfWeek(today) {
-  switch (today) {
-    case 0:
-      return "Domingo";
-    case 1:
-      return "Segunda-feira";
-    case 2:
-      return "Terça-feira";
-    case 3:
-      return "Quarta-feira";
-    case 4:
-      return "Quinta-feira";
-    case 5:
-      return "Sexta-feira";
-    case 6:
-      return "Sábado";
-  }
-}
-
-function getDate() {
-  const today = new Date();
-  const dayWeek = getDayOfWeek(today.getDay());
-  const day = today.getDate();
-  const month = today.getMonth();
-
-  return `${dayWeek}, ${day}/${month}`;
-}
+db.connect();
 
 app.use(express.static("public"));
-
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
-});
-
 app.get("/", (req, res) => {
-  const date = getDate();
-  res.render("index.ejs", { date: date, tasks: tasks });
+    res.render("index.ejs");
 });
 
-app.post("/add", (req, res) => {
-  lastId++;
-  const task = {
-    id: lastId,
-    text: req.body["input"],
-    check: false,
-  };
-  tasks.unshift(task);
-  res.redirect("/");
+app.listen(port, () => {
+    console.log(`Listening on port ${port}`);
 });

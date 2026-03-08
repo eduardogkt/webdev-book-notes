@@ -4,47 +4,91 @@
 
 <body>
   <%- include("partials/header.ejs") %>
-  <main>
-    <div class="container">
-      <div class="col-auto todo-list">
-        <div id="row-auto title" class="todo-title">
-          <% if (locals.date) { %>
-          <%= date %>
-          <% } else {%>
-          <%= new Date() %>
-          <% } %>
+  <main class="container min-vh-100 col-lg-6 col-md-8 col-sm-10">
+    <div class="hero">
+      <h1>My book<span class="underline">shelf</span>.</h1>
+      <h2>Books that I've read...</h2>
+      <p>Tiny summary but detailed notes for each. Use the ISBN number to find
+        it from your local library or anywhere else. This page will constantly
+        update as I read more, so bookmark it if you want to check back in a
+        few months.
+      </p>
+    </div>
+    <div class="options">
+      <select name="sort" id="sort-books" class="sort-books">
+        <option value="newest">sort by newest</option>
+        <option value="oldest">sort by oldest</option>
+        <option value="title">sort by title</option>
+        <option value="rating-best">sort by rating - best</option>
+        <option value="rating-worst">sort by rating - worst</option>
+      </select>
+      <button class="btn" id="add-book"><i class="bi bi-plus-lg"></i>Add book</button>
+    </div>
+    <div class="content">
+      <div class="book">
+        <div class="book-img">
+          <img src="https://placehold.co/160x240" alt="">
         </div>
-        <div class="row-auto todo-body">
-          <%- include("partials/form.ejs") %>
-
-          <div id="list">
-            <% if (locals.tasks) { %>
-            <% tasks.forEach((task) => { %>
-            <div class="task">
-              <input type="checkbox" id="<%= task.id %>" onchange="updateCheck(this)" />
-              <p id="text<%= task.id %>"><%= task.text %> </p>
+        <div class="book-info">
+          <a class="book-title" href="">
+            <h3>Title of the book</h3>
+          </a>
+          <div class="book-data">
+            <p>Read in: 12/03/2025</p>
+            <div>
+              <i class="bi bi-star"></i>
+              <i class="bi bi-star"></i>
+              <i class="bi bi-star"></i>
+              <i class="bi bi-star"></i>
+              <i class="bi bi-star"></i>
             </div>
-            <% }) %>
-            <% } %>
           </div>
-
+          <p class="book-review">Tweets from 1765-1799 by a 4’9” hunchback
+            physicist, friends with Goethe and Kant, admired by Nietzsche,
+            Schopenhauer, etc. Such wonderful random thoughts, beautiful
+            perspectives on thinking for yourself, observing nature, language,
+            freedom, philosophy, religion, and more. Hundreds of initial insights,
+            especially inspiring because they’re undeveloped.
+          </p>
         </div>
       </div>
+
+      <hr />
+
+      <div class="book">
+        <div class="book-img">
+          <img src="https://placehold.co/160x240" alt="">
+        </div>
+        <div class="book-info">
+          <a class="book-title" href="">
+            <h3>Title of the book</h3>
+          </a>
+          <div class="book-data">
+            <p>By: Georg Christoph</p>
+            <div>
+              <i class="bi bi-star"></i>
+              <i class="bi bi-star"></i>
+              <i class="bi bi-star"></i>
+              <i class="bi bi-star"></i>
+              <i class="bi bi-star"></i>
+            </div>
+          </div>
+          <p class="book-review">Tweets from 1765-1799 by a 4’9” hunchback
+            physicist, friends with Goethe and Kant, admired by Nietzsche,
+            Schopenhauer, etc. Such wonderful random thoughts, beautiful
+            perspectives on thinking for yourself, observing nature, language,
+            freedom, philosophy, religion, and more. Hundreds of initial insights,
+            especially inspiring because they’re undeveloped.
+          </p>
+        </div>
+      </div>
+
     </div>
   </main>
   <%- include("partials/footer.ejs") %>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-  <script>
-    function updateCheck(checkbox) {
-      let text = document.getElementById("text" + checkbox.id);
-      if (checkbox.checked) {
-        text.classList.add("checked");
-      } else {
-        text.classList.remove("checked");
-      }
-    }
-  </script>
+  <script src="js/main.js"></script>
 </body>
 
 </html>
