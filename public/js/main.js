@@ -14,3 +14,10 @@ window.addEventListener("scroll", () => {
 function submitForm() {
     document.getElementById("sort").submit();
 }
+
+const optBtn = document.getElementById("opt-btn");
+
+optBtn?.addEventListener("click", () => {
+    const menu = document.getElementById("opt-menu");
+    menu.classList.toggle("hide");
+});

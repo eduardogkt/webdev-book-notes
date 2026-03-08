@@ -11,7 +11,7 @@
       <h1>Edit a book</h1>
     </div>
 
-    <form action="/books/<%= book.isbn %>/edit" method="post">
+    <form action="/books/<%= book.id %>/edit" method="post">
       <div class="section">
         <div>
           <div class="book-img">
@@ -68,7 +68,7 @@
       </div>
 
       <div class="send">
-        <button type="submit" class="btn"><i class="bi bi-plus-lg"></i>Update book</button>
+        <button type="submit" class="btn">Update book</button>
       </div>
     </form>
   </main>

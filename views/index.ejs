@@ -33,17 +33,18 @@
     </div>
 
     <div class="content">
-      <% books.forEach((book => { %>
-      <div class="book">
+      <% books.forEach((book) => { %>
+
+      <div class="book" id="book-<%= book.id %>">
         <div class="book-img">
           <img src="https://placehold.co/160x240" alt="">
         </div>
         <div class="book-info">
-          <a class="book-title" href="/books/<%= book.isbn %>">
+          <a class="book-title" href="/books/<%= book.id %>" id="title-<%= book.id %>">
             <h3><%= book.title %></h3>
           </a>
           <div class="book-data">
-            <p>Read in: <%= book.readIn %></p>
+            <p>Read in: <%= book.read_in %></p>
             <div class="book-rating">
               <% for (let i = 0; i < 5; i++) { %>
               <% if (i < book.rating) { %>
@@ -60,7 +61,8 @@
       </div>
 
       <hr />
-      <% })) %>
+
+      <% }) %>
 
       <div class="book">
         <div class="book-img">
