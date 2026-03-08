@@ -51,7 +51,7 @@ form .section > div {
 input,
 textarea {
     background-color: var(--bg);
-    color: var(--text-2);
+    color: var(--text-3);
     font-size: 0.874rem;
     padding: 0.5rem;
     border-radius: 5px;

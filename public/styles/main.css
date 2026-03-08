@@ -42,6 +42,11 @@ footer .container {
     border: 0;
 }
 
+label {
+    font-weight: bold;
+    color: var(--text-2);
+}
+
 .container {
     padding: 0;
 }

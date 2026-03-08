@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include("partials/head.ejs", {title: "My bookshelf", style: "add.css"}) %>
+<%- include("partials/head.ejs", {title: "My bookshelf", style: "modify.css"}) %>
 
 <body>
   <%- include("partials/header.ejs") %>
@@ -19,15 +19,15 @@
           </div>
           <button class="btn" type="button" id="search-cover">Buscar capa</button>
           <div class="rating">
-            <input type="radio" id="star5" name="rating" value="5">
+            <input type="radio" id="star5" name="rating" value="5" <%= book.rating == 5 ? "checked" : ""%>>
             <label for="star5"><i class="bi bi-star-fill"></i></label>
-            <input type="radio" id="star4" name="rating" value="4">
+            <input type="radio" id="star4" name="rating" value="4" <%= book.rating == 4 ? "checked" : ""%>>
             <label for="star4"><i class="bi bi-star-fill"></i></label>
-            <input type="radio" id="star3" name="rating" value="3">
+            <input type="radio" id="star3" name="rating" value="3" <%= book.rating == 3 ? "checked" : ""%>>
             <label for="star3"><i class="bi bi-star-fill"></i></label>
-            <input type="radio" id="star2" name="rating" value="2">
+            <input type="radio" id="star2" name="rating" value="2" <%= book.rating == 2 ? "checked" : ""%>>
             <label for="star2"><i class="bi bi-star-fill"></i></label>
-            <input type="radio" id="star1" name="rating" value="1">
+            <input type="radio" id="star1" name="rating" value="1" <%= book.rating == 1 ? "checked" : ""%>>
             <label for="star1"><i class="bi bi-star-fill"></i></label>
           </div>
         </div>
