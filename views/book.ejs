@@ -18,12 +18,12 @@
           </div>
           <%- include("partials/menu.ejs", {isbn: book.isbn}) %>
         </div>
-        <div class="stars this-book-stars">
+        <div class="book-rating">
           <% for (let i = 0; i < 5; i++) { %>
           <% if (i < book.rating) { %>
-          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill star filled"></i>
           <% } else { %>
-          <i class="bi bi-star"></i>
+          <i class="bi bi-star-fill star"></i>
           <% } %>
           <% } %>
         </div>

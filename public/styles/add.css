@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("./main.css");
+
+:root {
+    --text-main: hsl(0, 0%, 98%);
+    --text-2: hsl(0, 0%, 83%);
+    --text-3: hsl(0, 0%, 70%);
+    --text-4: hsl(0, 0%, 60%);
+    --border: hsl(0, 0%, 20%);
+    --bg: hsl(0, 0%, 8%);
+}
+
+main {
+    padding-top: 8rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+form .field {
+    display: flex;
+    flex-direction: column;
+    color: var(--text-2);
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    width: 100%;
+}
+
+form .send {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+form .section {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+}
+
+form .section > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+input,
+textarea {
+    background-color: var(--bg);
+    color: var(--text-2);
+    font-size: 0.874rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid var(--border);
+    margin-bottom: 1rem;
+}
+
+#search-cover {
+    width: 100%;
+    margin-top: 0.5rem;
+}

@@ -169,11 +169,40 @@ footer .container {
     display: flex;
     gap: 1rem;
 }
-.book-data * {
+.book-data p {
     color: var(--text-4);
 }
+
+.book-rating .star {
+    color: var(--text-4);
+}
+.book-rating .star.filled {
+    color: goldenrod;
+}
+
 .book-review {
     font-size: 0.875rem;
+}
+
+.rating {
+    display: flex;
+    flex-direction: row-reverse; /* this is the magic */
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+    color: var(--text-4);
+    gap: 5px;
+}
+.rating input {
+    display: none;
+}
+.rating label {
+    font-size: 24px;
+    cursor: pointer;
+}
+.rating label:hover,
+.rating label:hover ~ label,
+.rating input:checked ~ label {
+    color: goldenrod !important;
 }
 
 @media (max-width: 768px) {

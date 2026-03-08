@@ -44,25 +44,18 @@ p {
     width: 100%;
 }
 
-.this-book-stars {
+.book-rating {
     font-size: 1.5rem;
     color: var(--text-3);
 }
-.this-book-stars .bi-star-fill,
-.this-book-stars .bi-star-half {
-    color: goldenrod;
-}
 
-.this-book-data {
+.book-data {
     flex-direction: column;
     gap: 0.8rem;
 }
 .this-book-data * {
     font-size: 0.875rem;
     color: var(--text-4);
-}
-
-.this-book-synopsis {
 }
 
 .content {

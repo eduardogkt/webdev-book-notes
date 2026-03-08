@@ -52,6 +52,25 @@ app.get("/books/:id", (req, res) => {
     }
 });
 
+app.get("/add", (req, res) => {
+    res.render("add.ejs");
+});
+
+app.post("/add", (req, res) => {
+    res.render("add.ejs");
+});
+
+app.get("/books/:id/edit", (req, res) => {
+    const book = books.find((book) => book.isbn === req.params.id);
+    if (book) {
+        res.render("edit.ejs", { book: book });
+    }
+});
+
+app.post("/books/:id/edit", (req, res) => {});
+
+app.post("/books/:id/delete", (req, res) => {});
+
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
