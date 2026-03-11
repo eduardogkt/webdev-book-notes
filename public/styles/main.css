@@ -113,6 +113,12 @@ label {
     font-size: 1rem;
     color: var(--text-3);
 }
+.hero a {
+    color: var(--text-2);
+}
+.hero a:hover {
+    color: var(--text-3);
+}
 
 .options {
     display: flex;

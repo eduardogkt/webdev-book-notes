@@ -33,9 +33,12 @@ form .field {
 form .send {
     width: 100%;
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
 }
-
+form span {
+    font-size: 0.875rem;
+    color: var(--text-4);
+}
 form .section {
     display: flex;
     gap: 2rem;

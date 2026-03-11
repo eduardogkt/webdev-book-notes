@@ -9,7 +9,7 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-const db = new pg.Client({
+const db = new pg.Pool({
     connectionString: process.env.DATABASE_URL,
     ssl: {
         rejectUnauthorized: false,
