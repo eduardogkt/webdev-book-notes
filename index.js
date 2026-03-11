@@ -10,14 +10,13 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 const db = new pg.Client({
-    user: process.env.PG_USER,
-    password: process.env.PG_PASSWORD,
-    host: process.env.PG_HOST,
-    database: process.env.PG_DB,
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false,
+    },
 });
 
 db.connect();
-
 let books = [
     {
         isbn: "1234567890",
