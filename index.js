@@ -19,14 +19,14 @@ db.connect();
 
 function buildBook(body) {
     return {
-        isbn: body.isbn || "0000000000",
-        title: body.title || "No title",
-        author: body.author || "No author",
-        rating: body.rating || 0,
-        readIn: body.readin || null,
-        synopsis: body.synopsis || "",
-        review: body.review || "",
-        notes: body.notes || "",
+        isbn: body["isbn"] || "",
+        title: body["title"] || "No title",
+        author: body["author"] || "No author",
+        rating: body["rating"] || 0,
+        readIn: body["read-in"] || null,
+        synopsis: body["synopsis"] || "",
+        review: body["review"] || "",
+        notes: body["notes"] || "",
         coverUrl: `https://example.com/${body.isbn}`,
     };
 }
@@ -37,7 +37,14 @@ async function getBooks() {
 }
 
 async function getBookById(id) {
-    const response = await db.query("SELECT * FROM books WHERE id = $1", [id]);
+    const query = `
+        SELECT books.*, notes.content AS notes
+        FROM books 
+        LEFT JOIN notes 
+        ON notes.book_id = books.id
+        WHERE books.id = $1;`;
+
+    const response = await db.query(query, [id]);
     return response.rows[0];
 }
 
@@ -73,6 +80,38 @@ async function addNotes(bookId, bookNotes) {
     const values = [bookId, bookNotes];
 
     const response = await db.query(query, values);
+    return response.rows[0];
+}
+
+async function editBook(id, body) {
+    const values = [
+        body["isbn"] || "",
+        body["title"] || "No title",
+        body["author"] || "No author",
+        body["rating"] || 0,
+        body["read-in"] || null,
+        body["synopsis"] || "",
+        body["review"] || "",
+        id,
+    ];
+    const query = `
+        UPDATE books 
+        SET isbn = $1, title = $2, author = $3, rating = $4, read_in = $5, synopsis = $6, review = $7
+        WHERE id = $8
+        RETURNING *;`;
+
+    const response = await db.query(query, values);
+    return response.rows[0];
+}
+
+async function editNotes(bookId, bookNotes) {
+    const query = `
+        UPDATE notes 
+        SET content = $1
+        WHERE book_id = $2
+        RETURNING *;`;
+
+    const response = await db.query(query, [bookNotes, bookId]);
     return response.rows[0];
 }
 
@@ -124,7 +163,28 @@ app.get("/books/:id/edit", async (req, res) => {
     }
 });
 
-app.post("/books/:id/edit", (req, res) => {});
+app.post("/books/:id/edit", async (req, res) => {
+    try {
+        const editedBook = await editBook(req.params.id, req.body);
+
+        const response = await db.query(
+            "SELECT * FROM notes WHERE book_id = $1;",
+            [req.params.id],
+        );
+
+        console.log("Found " + response.rows[0]);
+
+        if (response.rowCount > 0) {
+            const response = await editNotes(editedBook.id, req.body.notes);
+        } else {
+            const response = await addNotes(editedBook.id, req.body.notes);
+        }
+        res.redirect("/");
+    } catch (error) {
+        console.error("Erro ao editar livro: " + error);
+        res.status(500).send("Erro ao editar livro");
+    }
+});
 
 app.post("/books/:id/delete", (req, res) => {});
 
