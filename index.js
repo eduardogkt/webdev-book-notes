@@ -34,7 +34,7 @@ function buildBook(body) {
         synopsis: body["synopsis"] || "",
         review: body["review"] || "",
         notes: body["notes"] || "",
-        coverUrl: body["cover"] || "/images/cover.png",
+        coverUrl: body["cover-url"] || "/images/cover.png",
     };
 }
 
