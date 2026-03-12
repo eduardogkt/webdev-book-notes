@@ -94,7 +94,8 @@ p {
     display: flex;
     flex-direction: column;
 }
-.opt-menu a {
+.opt-menu a,
+.opt-menu button {
     text-decoration: none;
     font-size: small;
     cursor: pointer;
@@ -109,6 +110,26 @@ p {
 
 .hide {
     display: none;
+}
+
+.modal .modal-header,
+.modal .modal-footer {
+    border: 0;
+}
+.modal .modal-content {
+    background-color: var(--bg);
+}
+.modal a {
+    color: var(--text-2);
+}
+.modal .btn {
+    color: var(--text-2) !important;
+}
+.modal .btn-cancel {
+    background-color: var(--border);
+}
+.modal .btn-delete {
+    background-color: hsl(0, 60%, 37%);
 }
 
 @media (max-width: 768px) {

@@ -125,7 +125,7 @@ app.get("/", async (req, res) => {
 
 app.get("/books/:id", async (req, res) => {
     const book = await getBookById(req.params.id);
-    console.log("Found book: ", book);
+    // console.log("Found book: ", book);
 
     if (book) {
         res.render("book.ejs", { book: book });
@@ -172,8 +172,6 @@ app.post("/books/:id/edit", async (req, res) => {
             [req.params.id],
         );
 
-        console.log("Found " + response.rows[0]);
-
         if (response.rowCount > 0) {
             const response = await editNotes(editedBook.id, req.body.notes);
         } else {
@@ -186,7 +184,19 @@ app.post("/books/:id/edit", async (req, res) => {
     }
 });
 
-app.post("/books/:id/delete", (req, res) => {});
+app.post("/books/:id/delete", async (req, res) => {
+    try {
+        const response = await db.query(
+            "DELETE FROM books WHERE id = $1 RETURNING *;",
+            [req.params.id],
+        );
+        // console.log("Deleted book: " + response.rows[0]);
+        res.redirect("/");
+    } catch (error) {
+        console.error("Erro ao deletar livro: " + error);
+        res.status(500).send("Erro ao deletar livro");
+    }
+});
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
