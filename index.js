@@ -2,7 +2,6 @@ import express, { response } from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
 import dotenv from "dotenv";
-import moment from "moment";
 
 dotenv.config();
 
@@ -35,7 +34,7 @@ function buildBook(body) {
         synopsis: body["synopsis"] || "",
         review: body["review"] || "",
         notes: body["notes"] || "",
-        coverUrl: `https://example.com/${body.isbn}`,
+        coverUrl: body["cover"] || "/images/cover.png",
     };
 }
 
@@ -123,12 +122,13 @@ async function editBook(id, body) {
         body["read-in"] || null,
         body["synopsis"] || "",
         body["review"] || "",
+        body["cover-url"] || "/images/cover.png",
         id,
     ];
     const query = `
         UPDATE books 
-        SET isbn = $1, title = $2, author = $3, rating = $4, read_in = $5, synopsis = $6, review = $7
-        WHERE id = $8
+        SET isbn = $1, title = $2, author = $3, rating = $4, read_in = $5, synopsis = $6, review = $7, cover_url = $8
+        WHERE id = $9
         RETURNING *;`;
 
     const response = await db.query(query, values);
@@ -234,6 +234,14 @@ app.post("/books/:id/delete", async (req, res) => {
         console.error("Erro ao deletar livro: " + error);
         res.status(500).send("Erro ao deletar livro");
     }
+});
+
+app.get("/cover", async (req, res) => {
+    // a criação da capa poderia ser tratada inteiramente do frontend, mas
+    // preferi fazer uma requisição para /cover
+    const isbn = req.query.isbn;
+    const cover = `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`;
+    res.json({ cover });
 });
 
 app.listen(port, () => {

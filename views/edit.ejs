@@ -15,8 +15,9 @@
       <div class="section">
         <div>
           <div class="book-img">
-            <img src="https://placehold.co/160x240" alt="">
+            <img src="/images/cover.png" alt="">
           </div>
+          <input type="hidden" name="cover-url" id="cover-url"> <!-- contem a url da capa -->
           <button class="btn" type="button" id="search-cover">Search cover</button>
           <div class="rating">
             <input type="radio" id="star5" name="rating" value="5" <%= book.rating == 5 ? "checked" : ""%>>
@@ -43,7 +44,7 @@
           </div>
           <div class="field">
             <label for="isbn">ISBN *</label>
-            <input type="text" name="isbn" placeholder="ISBN" required value="<%= book.isbn %>">
+            <input type="text" name="isbn" placeholder="ISBN" required value="<%= book.isbn %>" id="isbn">
           </div>
           <div class="field">
             <label for="read-in">Read in</label>
