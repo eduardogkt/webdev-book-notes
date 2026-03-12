@@ -8,9 +8,9 @@
         <p>Are you sure you wanto to delete this book?</p>
       </div>
       <div class="modal-footer">
-        <form action="/books/<%= id %>/delete" method="post">
-          <button class="btn btn-cancel" data-bs-dismiss="modal">Cancel</button>
-          <button class="btn btn-delete" type="submit" value="submit">Delete</button>
+        <form>
+          <button class="btn btn-cancel" data-bs-dismiss="modal" formaction="/books/<%= id %>" formmethod="get">Cancel</button>
+          <button class=" btn btn-delete" type="submit" value="submit" formaction="/books/<%= id %>/delete" formmethod="post">Delete</button>
         </form>
       </div>
     </div>

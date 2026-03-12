@@ -11,7 +11,7 @@
       <h1>Edit a book</h1>
     </div>
 
-    <form action="/books/<%= book.id %>/edit" method="post">
+    <form>
       <div class="section">
         <div>
           <div class="book-img">
@@ -69,7 +69,10 @@
 
       <div class="send">
         <span>* required</span>
-        <button type="submit" class="btn">Update book</button>
+        <div class="d-flex gap-3 align-items-center">
+          <a class="btn btn-cancel" href="/books/<%= book.id %>">Cancel</a>
+          <button type="submit" class="btn" formaction="/books/<%= book.id %>/edit" formmethod="post">Update book</button>
+        </div>
       </div>
     </form>
   </main>

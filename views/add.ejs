@@ -11,7 +11,7 @@
       <h1>Add a book</h1>
     </div>
 
-    <form action="/add" method="post">
+    <form>
       <div class="section">
         <div>
           <div class="book-img">
@@ -69,8 +69,12 @@
 
       <div class="send">
         <span>* required</span>
-        <button type="submit" class="btn"><i class="bi bi-plus-lg" value="submit"></i>Add book</button>
+        <div class="d-flex gap-3 align-items-center">
+          <a class="btn btn-cancel" href="/">Cancel</a>
+          <button type="submit" class="btn" formaction="/add" formmethod="post"><i class="bi bi-plus-lg"></i>Add book</button>
+        </div>
       </div>
+
     </form>
   </main>
 
