@@ -17,13 +17,13 @@
     </div>
 
     <div class="options">
-      <form method="post" action="/view" id="sort">
-        <select name="sort" id="sort-books" class="sort-books" onchange="submitForm()">
-          <option value="newest">sort by newest</option>
-          <option value="oldest">sort by oldest</option>
-          <option value="title">sort by title</option>
-          <option value="rating-best">sort by best rating</option>
-          <option value="rating-worst">sort by worst rating</option>
+      <form method="get" action="/" id="sort">
+        <select name="sort-books" id="sort-books" class="sort-books" onchange="this.form.submit()">
+          <option value="newest-read" <%= sort === "newest-read" ? "selected" : ""  %>>Sort by newest</option>
+          <option value="oldest-read" <%= sort === "oldest-read" ? "selected" : ""  %>>Sort by oldest</option>
+          <option value="title" <%= sort === "title" ? "selected" : ""  %>>Sort by title</option>
+          <option value="rating-best" <%= sort === "rating-best" ? "selected" : ""  %>>Sort by best rating</option>
+          <option value="rating-worst" <%= sort === "rating-worst" ? "selected" : ""  %>>Sort by worst rating</option>
         </select>
       </form>
 

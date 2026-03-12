@@ -17,6 +17,16 @@ const db = new pg.Client({
 
 db.connect();
 
+const sortOptions = {
+    "newest-read": { field: "read_in", order: "DESC" },
+    "oldest-read": { field: "read_in", order: "ASC" },
+    title: { field: "title", order: "ASC" },
+    "rating-best": { field: "rating", order: "DESC" },
+    "rating-worst": { field: "rating", order: "ASC" },
+};
+
+let sort = { field: "read_in", order: "DESC", name: "newest-read" };
+
 function buildBook(body) {
     return {
         isbn: body["isbn"] || "",
@@ -43,7 +53,8 @@ async function getBooks() {
             synopsis,
             review,
             cover_url AS "coverUrl"
-        FROM books;`;
+        FROM books
+        ORDER BY ${sort.field} ${sort.order}`;
     const response = await db.query(query);
     return response.rows;
 }
@@ -148,8 +159,11 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", async (req, res) => {
+    const sortName = req.query["sort-books"] || "newest-read";
+    sort = sortOptions[sortName] || sortOptions["newest-read"];
+
     const books = await getBooks();
-    res.render("index.ejs", { books: books });
+    res.render("index.ejs", { books: books, sort: sortName });
 });
 
 app.get("/books/:id", async (req, res) => {
@@ -221,6 +235,22 @@ app.post("/books/:id/delete", async (req, res) => {
     } catch (error) {
         console.error("Erro ao deletar livro: " + error);
         res.status(500).send("Erro ao deletar livro");
+    }
+});
+
+app.post("/view", async (req, res) => {
+    try {
+        const selectedSort = req.body["sort-books"];
+
+        if (sortOptions[selectedSort]) {
+            sort = { ...sortOptions[selectedSort], name: selectedSort };
+        }
+
+        // console.log(sort);
+        res.redirect("/");
+    } catch (erro) {
+        console.error("Erro ao ordenar livros: " + error);
+        res.status(500).send("Erro ao ordenar livro");
     }
 });
 
