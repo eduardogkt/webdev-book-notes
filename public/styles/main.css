@@ -226,6 +226,70 @@ label {
     color: goldenrod !important;
 }
 
+.btn-opt,
+.btn-opt:hover {
+    background-color: var(--bg);
+    color: var(--text-2);
+    border: transparent;
+    margin: 0.5rem 0;
+    border-radius: 100px;
+    width: fit-content;
+    padding: 0.2rem 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+.btn-opt:hover {
+    background-color: hsl(0, 0%, 12%);
+}
+
+.opt-menu {
+    background-color: var(--bg);
+    padding: 0.5rem;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+}
+.opt-menu a,
+.opt-menu button {
+    text-decoration: none;
+    font-size: small;
+    cursor: pointer;
+    color: var(--text-2);
+    text-wrap: nowrap;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+.opt-menu a:hover {
+    background-color: hsl(0, 0%, 12%);
+}
+
+.hide {
+    display: none;
+}
+
+.modal .modal-header,
+.modal .modal-footer {
+    border: 0;
+}
+.modal .modal-content {
+    background-color: var(--bg);
+}
+.modal a {
+    color: var(--text-2);
+}
+.modal .btn {
+    color: var(--text-2) !important;
+}
+.modal .btn-cancel {
+    background-color: var(--border);
+}
+.modal .btn-delete {
+    background-color: hsl(0, 60%, 37%);
+}
+
 @media (max-width: 768px) {
     .header {
         border-bottom: 1px solid var(--border);
@@ -244,8 +308,16 @@ label {
     .book-info {
         align-items: center;
     }
+    .book-info > div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
     .book-review {
         text-align: center;
+    }
+    .book-data {
+        align-items: center;
     }
 }
 @media (min-width: 769px) and (max-width: 992px) {

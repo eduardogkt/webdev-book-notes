@@ -11,12 +11,14 @@ window.addEventListener("scroll", () => {
     }
 });
 
-document.getElementById("opt-btn")?.addEventListener("click", () => {
-    const menu = document.getElementById("opt-menu");
-    menu.classList.toggle("hide");
+document.querySelectorAll(".btn-opt")?.forEach((btn) => {
+    btn.addEventListener("click", () => {
+        const menu = btn.nextElementSibling;
+        menu.classList.toggle("hide");
+    });
 });
 
-document.getElementById("search-cover").addEventListener("click", async () => {
+document.getElementById("search-cover")?.addEventListener("click", async () => {
     const isbn = document.getElementById("isbn").value;
 
     if (!isbn) {
